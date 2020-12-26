@@ -1,0 +1,28 @@
+<section class="admin-approval card">
+  <div class="card-body">
+    <h4 class="card-title">Admin Approvals</h4>
+  </div>
+  <div class="comment-widgets scrollable heigth">
+    <div v-if="users.length === 0" class="p-4">
+      No data to display
+    </div>
+    <!-- Comment Row -->
+    <div class="d-flex flex-row comment-row m-t-0"  v-for="user in users" v-bind:key="user.id">
+        <div class="p-2"><img v-bind:src="'/api/profile/pic/thumbnail/'+user.profile_img_url" alt="user" width="50" class="rounded-circle"></div>
+      <div class="comment-text w-100">
+        <h6 class="font-medium">
+          {{user.name}}
+          <small>{{user.email}}</small>
+        </h6>
+        <span class="m-b-15 d-block">
+          {{user.city}}, {{user.state}}
+        </span>
+        <div class="comment-footer">
+          <span class="text-muted float-right">{{user.dob | moment("MMMM, Do YYYY")}}</span>
+          <button type="button" @click="approve(user.id)" class="btn btn-cyan btn-sm">Approve</button>
+          <a v-bind:href="'/admin/members/details/'+user.id" class="btn btn-cyan btn-sm">Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

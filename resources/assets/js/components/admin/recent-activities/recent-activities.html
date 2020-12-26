@@ -1,0 +1,24 @@
+<section class="recent-activities card">
+  <div class="card-body">
+    <h4 class="card-title">Recent activities</h4>
+  </div>
+  <div class="comment-widgets scrollable heigth">
+    <div v-if="activities.length === 0" class="p-4">
+      No data to display
+    </div>
+    <!-- Comment Row -->
+    <div class="d-flex flex-row comment-row m-t-0" v-for="activity in activities" v-bind:key="activity.id">
+      <div class="comment-text w-100">
+        <h4 class="font-medium text-capitalize">
+          {{activity.log}}
+        </h4>
+        <div class="comment-footer">
+            <span class="m-b-15 d-block float-left">
+              User id : {{activity.id}}
+            </span>
+          <span class="text-muted float-right">{{activity.created_at | moment("MMMM, Do YYYY")}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
